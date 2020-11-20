@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Sign In</h3>
+        <div class="d-flex justify-content-end social_icon">
+          <span><i class="fab fa-facebook-square"></i></span>
+          <span><i class="fab fa-google-plus-square"></i></span>
+          <span><i class="fab fa-twitter-square"></i></span>
+        </div>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <mat-icon>account_circle</mat-icon>
+              </span>
+            </div>
+            <input type="text" class="form-control" name="username" placeholder="username" [(ngModel)]="user.username">
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <mat-icon> vpn_key</mat-icon>
+              </span>
+            </div>
+            <input type="password" class="form-control" name="password" placeholder="password" [(ngModel)]="user.password">
+          </div>
+          <div class="row align-items-center remember">
+            <input type="checkbox">Remember Me
+          </div>
+          <div class="form-group">
+            <label class="btn float-right login_btn" (click)="checkUser()">Login</label>
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-align-bottom" fill="red" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2z" />
+              <path fill-rule="evenodd" d="M1 14.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z" />
+            </svg>
+
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          Don't have an account?<a href="#">Sign Up</a>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a href="#">Forgot your password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center">Resturant</h1>
+  </div>
+</div>
+
+<ng-select [items]="paymentMethods"
+           bindLabel="name"
+           placeholder="Select item"
+           appendTo="body"
+           multiple="true"
+           [(ngModel)]="selected">
+</ng-select>
+
+
+
+<div class="row">
+
+  <div class="col-md-7">
+
+
+    <form class="form-horizontal">
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <label class="control-label">  PaymentId </label>
+          <select class="form-control" name="PaymentId" [(ngModel)]="Order.PaymentId">
+            <option *ngFor="let x of paymentMethods" [value]="x.id">{{x.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="control-label">  Orderdate </label>
+          <input type="date" class="form-control" name="Orderdate" [(ngModel)]="Order.Orderdate" />
+        </div>
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <label class="control-label">  Total </label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="text" class="form-control" [disabled]="1" name="TotalPrice" [(ngModel)]="Order.TotalPrice" />
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <br />
+
+          <label (click)="SaveOrder()" class="btn btn-success" style="margin-top:7px;">
+            <span>Order </span> <mat-icon inline=true>storage</mat-icon>
+          </label>
+        </div>
+
+      </div>
+    </form>
+
+
+    <hr />
+    <table class="table table-striped table-hover">
+      <tr class="alert-success">
+        <th style="width:200px;">Food</th>
+        <th>Price</th>
+        <th>amount</th>
+        <th>total Price</th>
+        <th style="width:30px;"> </th>
+      </tr>
+
+      <tr>
+
+        <td>
+          <select class="form-control" name="FoodID" (change)="getFoodPrice($event)" [(ngModel)]="OrderDetail.FoodID">
+            <option *ngFor="let c of FoodTypes" value="{{c.id}}">{{c.name}}</option>
+          </select>
+        </td>
+        <td>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input class="form-control" type="text" [disabled]="true" name="Price" [(ngModel)]="OrderDetail.Price" />
+
+
+          </div>
+
+        </td>
+        <td><input class="form-control" type="text" name="Quantity" [(ngModel)]="OrderDetail.Quantity" /></td>
+        <td>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input class="form-control" type="text" name="TotalPrice" [(ngModel)]="OrderDetail.TotalPrice" value="{{OrderDetail.Price*OrderDetail.Quantity}}" />
+          </div>
+        </td>
+        <td>
+
+          <label class="btn btn-success" (click)="AddOrderDetails()">
+            <mat-icon inline=true>add</mat-icon>
+          </label>
+        </td>
+      </tr>
+
+
+      <tr *ngFor="let x of OrderDetails">
+        <td> <label class="btn btn-danger rounded-circle"> {{x.FoodName}} </label></td>
+        <td [hidden]="true">{{x.FoodID}}</td>
+        <td>{{x.Price}}</td>
+        <td>{{x.Quantity}}</td>
+        <td>{{x.TotalPrice}}</td>
+        <td>
+          <label class="btn btn-danger" (click)="deleteItem(x.FoodID)">
+            <mat-icon inline=true>highlight_off</mat-icon>
+          </label>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+
+  <div class="col-md-5">
+
+    <form class="form-horizontal">
+
+      <div class="row">
+        <div class="col-md-12">
+          <label class="control-label"> Customer </label>
+          <input type="text" class="form-control" name="j" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label"> Telephone </label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label"> Address </label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+
+    </form>
+
+    <hr style="margin-top:30px" />
+
+    <table class="table table-striped table-hover">
+      <tr class="alert-danger">
+        <th>Order Date</th>
+        <th>Paid</th>
+        <th>total Price</th>
+      </tr>
+
+      <tr>
+      </tr>
+
+    </table>
+  </div>
+
+</div>
+
+
+
+
+
